@@ -1,0 +1,43 @@
+<?php
+namespace PlumTree\CustomForm\Controller\Page;
+use \Magento\Framework\App\Action\Context;
+use \Magento\Framework\View\Result\PageFactory;
+use \PlumTree\CustomForm\Model\PostingsFactory;
+use \Magento\Framework\Controller\ResultFactory;
+class Form extends \Magento\Framework\App\Action\Action
+{
+    //@ Class variables
+
+    protected $resultPageFactory;
+    protected $PostingsFactory;
+    protected $title;
+    protected $description;
+
+    public function __construct(Context $context,PageFactory $resultPageFactory,PostingsFactory $PostingsFactory)
+    {
+        $this->resultPageFactory = $resultPageFactory;
+        $this->PostingsFactory= $PostingsFactory;        
+        parent::__construct($context);
+    }
+        
+    public function execute()
+    {
+        
+            #return $this->_redirect("customform/page/form");            
+            #return $this->resultRedirectFactory->create()->setPath('customform/page/form');
+            $this->_view->loadLayout();
+            $this->_view->renderLayout();
+
+        
+
+            
+    }
+
+        private function isPostRequest()
+    {
+        /** @var Request $request */
+        $request = $this->getRequest();
+        return !empty($request->getPostValue());
+    }
+
+}
