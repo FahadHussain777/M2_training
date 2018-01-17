@@ -12,17 +12,21 @@ class Delete extends \Magento\Backend\App\Action {
 	
 	public function execute()
 	{
-		$id = $this->getRequest()->getParam("post_id");
-		/** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+		$id = $this->getRequest()->getParam("post_id");		
 		$resultRedirect = $this->resultRedirectFactory->create();
-		if ($id) {
-			try {
+
+		if ($id) 
+		{
+			try 
+			{
 				$model = $this->_objectManager->create("PlumTree\CustomForm\Model\Postings");
 				$model->load($id);
 				$model->delete();
-				$this->messageManager->addSuccess(__("The Item has been deleted."));
+				$this->messageManager->addSuccess(__("The Item has been deleted."));				
 				return $resultRedirect->setPath("*/*/");
-			} catch (\Exception $e) {
+			} 
+			catch (\Exception $e) 
+			{
 				$this->messageManager->addError($e->getMessage());
 				return $resultRedirect->setPath("*/*/edit", ["post_id" => $id]);
 			}
