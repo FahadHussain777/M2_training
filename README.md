@@ -1,1 +1,0 @@
-# fahad_m2_training
