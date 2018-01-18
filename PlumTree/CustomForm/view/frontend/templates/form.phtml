@@ -1,0 +1,58 @@
+<form 
+	class="form contact" 
+	action="<?php $block->escapeUrl($block->getFormAction())?>"
+	method="post"
+	id="contact-form"
+	data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+	data-mage-init='{"validation":{}}' 
+	method="post">
+<table>
+	<tr>
+		<td>
+			<div class="field name required">
+            <label class="label" for="title"><span><?= $block->escapeHtml(__('Title:')) ?></span></label>
+            </div>     
+		<td>
+			<input 
+			name="title" 
+			value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('title')) ?>" 
+			class="input-text" 
+			type="text" 
+			data-validate="{required:true}"
+			placeholder="Title goes here "/>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<div class="field name required">
+            <label class="label" for="description"><span><?= $block->escapeHtml(__('Description:')) ?></span></label>
+            </div>			
+		</td>
+		<td> 
+			<textarea 
+			name="description" 
+			placeholder="Your remarks goes here" 
+			value="<?= $block->escapeHtmlAttr($this->helper('Magento\Contact\Helper\Data')->getPostValue('description')) ?>"			
+			class="input-text"
+			data-validate="{required:true}"
+			placeholder= "<?= $block->escapeHtml(__('Your descrition goes here')) ?>"
+			>
+			</textarea>			
+		</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td>
+			<div class="actions-toolbar">
+        	<div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+		</td>
+	</tr>
+</table>
+</form>
+
