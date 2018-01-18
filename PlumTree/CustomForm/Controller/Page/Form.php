@@ -15,10 +15,6 @@ class Form extends \Magento\Framework\App\Action\Action
     protected $PostingsFactory;
     protected $formKeyValidator;
 
-    //@ Post variables
-
-    private $data = array('title','description');
-
     //@ Constructor function 
     
     public function __construct(Context $context,PageFactory $resultPageFactory,PostingsFactory $PostingsFactory,Validator  $formKeyValidator)
@@ -41,12 +37,7 @@ class Form extends \Magento\Framework\App\Action\Action
             {       
 
                 $PostingsModel=$this->PostingsFactory->create();
-                
-                foreach ($this->data as $key )                 
-                {
-                    $PostingsModel->setData($key,$post[$key])->save();
-                }
-
+                $PostingsModel->setData($post)->save();
                 $this->messageManager->addSuccessMessage("Thanks for your feedback");
                 $resultRedirect=$this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
                 $resultRedirect->setUrl($this->_redirect->getRefererUrl());
